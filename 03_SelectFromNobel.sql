@@ -49,10 +49,10 @@ SELECT *
 FROM nobel
 WHERE (subject = 'Medicine' AND yr < 1910) OR (subject = 'Literature' AND yr >= 2004)
 
-/* Find all details of the prize won by PETER GRÜNBERG */
+/* Find all details of the prize won by PETER GRÃœNBERG */
 SELECT *
 FROM nobel
-WHERE winner = 'PETER GRÜNBERG'
+WHERE winner = 'PETER GRÃœNBERG'
 
 /* Find all details of the prize won by EUGENE O'NEILL */
 SELECT *
@@ -71,7 +71,7 @@ FROM nobel
 WHERE yr=1984
 ORDER BY 
 	CASE 
-		WHEN subject IN ('Physics','Chemistry') THEN 1 
-		ELSE 0 
+	  WHEN subject IN ('Physics','Chemistry') THEN 1 
+	  ELSE 0 
 	END, 
 subject,winner
