@@ -79,7 +79,7 @@ WHERE movie.id IN
  (SELECT movieid 
   FROM casting
   WHERE actorid IN 
-	(SELECT id 
+    (SELECT id 
      FROM actor
      WHERE name='Julie Andrews'))
 
@@ -109,10 +109,10 @@ WHERE movieid IN
    FROM movie 
    WHERE title IN
      (SELECT title
-	  FROM movie
-	  JOIN casting ON movie.id = movieid 
-	  WHERE actorid IN
+      FROM movie
+      JOIN casting ON movie.id = movieid 
+      WHERE actorid IN
         (SELECT id 
-	     FROM actor 
-	     WHERE name = 'Art Garfunkel')))
+	 FROM actor 
+	 WHERE name = 'Art Garfunkel')))
 AND name != 'Art Garfunkel'
