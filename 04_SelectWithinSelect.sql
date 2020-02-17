@@ -36,7 +36,7 @@ WHERE population >
 SELECT name, CONCAT(ROUND(100*population/ (SELECT population
                                            FROM world
                                            WHERE name = 'Germany')
-										   ,0),'%') as population
+					   ,0),'%') as population
 FROM world
 WHERE continent = 'Europe'
 
@@ -44,15 +44,15 @@ WHERE continent = 'Europe'
 SELECT name
 FROM world
 WHERE gdp > ALL (SELECT gdp
-				 FROM world
-				 WHERE continent = 'Europe' AND gdp > 0)
+		 FROM world
+		 WHERE continent = 'Europe' AND gdp > 0)
 
 /* Find the largest country (by area) in each continent, show the continent, the name and the area: */
 SELECT x.continent, x.name, x.area
 FROM world x
 WHERE area >= ALL (SELECT area
-				   FROM world y
-				   WHERE (y.continent = x.continent) AND (area > 0))
+		   FROM world y
+		   WHERE (y.continent = x.continent) AND (area > 0))
 
 /* List each continent and the name of the country that comes first alphabetically. */
 SELECT continent, MIN(name) as name    
@@ -65,13 +65,13 @@ Show name, continent and population. */
 SELECT x.name, x.continent, x.population
 FROM world x
 WHERE NOT EXISTS (SELECT *
-				  FROM world y
-				  WHERE (x.continent = y.continent) AND (y.population > 25000000))
+		  FROM world y
+		  WHERE (x.continent = y.continent) AND (y.population > 25000000))
 
 /* Some countries have populations more than three times that of any of their neighbours (in the same continent). 
    Give the countries and continents. */
 SELECT x.name, x.continent
 FROM world AS x
 WHERE x.population/3 > ALL (SELECT y.population
-							FROM world AS y
-							WHERE (x.continent = y.continent) AND (x.name != y.name))
+			    FROM world AS y
+			    WHERE (x.continent = y.continent) AND (x.name != y.name))
